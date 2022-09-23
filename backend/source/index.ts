@@ -13,17 +13,13 @@ import backupRoute from './backup/backupRoute';
 import CreateBackup from './backup/backupData';
 import statisticsRoute from './statistics/statisticsRoute';
 
-const corsOptions = {
-    origin: ['https://inventory-hardware.vercel.app', 'http://localhost:3000'],
-}
-
 //initialized express
 const app = express();
 dotenv.config(); //get environment variables
 const port = process.env.PORT || 4000;
 
 //app body parser middleware
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

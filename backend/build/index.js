@@ -16,15 +16,12 @@ const purchaseRoute_1 = __importDefault(require("./PurchasedAndPayables/purchase
 const backupRoute_1 = __importDefault(require("./backup/backupRoute"));
 const backupData_1 = __importDefault(require("./backup/backupData"));
 const statisticsRoute_1 = __importDefault(require("./statistics/statisticsRoute"));
-const corsOptions = {
-    origin: ['https://inventory-hardware.vercel.app', 'http://localhost:3000'],
-};
 //initialized express
 const app = (0, express_1.default)();
 dotenv_1.default.config(); //get environment variables
 const port = process.env.PORT || 4000;
 //app body parser middleware
-app.use((0, cors_1.default)(corsOptions));
+app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 //employee and account routes
