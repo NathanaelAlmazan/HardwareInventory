@@ -870,7 +870,7 @@ function generateInvoicePDF(orderId) {
             if (orderInvoice.sold != null)
                 return { status: false, message: "Order is already paid." };
             const browser = yield puppeteer_core_1.default.launch({
-                executablePath: "/home/nathanael_almazan/HardwareInventory/backend/node_modules/puppeteer/.local-chromium/linux-1036745/chrome-linux/chrome",
+                executablePath: '/usr/bin/chromium',
                 headless: true,
                 args: ["--no-sandbox", "--disable-setuid-sandbox"]
             });
@@ -921,7 +921,7 @@ function generateReceiptPDF(orderId) {
             if (orderReceipt.transactions.length == 0)
                 return { status: false, message: "This order has no payments yet." };
             const browser = yield puppeteer_core_1.default.launch({
-                executablePath: "/home/nathanael_almazan/HardwareInventory/backend/node_modules/puppeteer/.local-chromium/linux-1036745/chrome-linux/chrome",
+                executablePath: '/usr/bin/chromium',
                 headless: true,
                 args: ["--no-sandbox", "--disable-setuid-sandbox"]
             });
