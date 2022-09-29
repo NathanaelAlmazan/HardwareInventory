@@ -30,11 +30,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const Pool = pg.Pool;
 const client = new Pool({
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    database: process.env.DATABASE_NAME,
-    password: process.env.DATABASE_PASSWORD,
-    port: parseInt(process.env.DATABASE_PORT)
+    connectionString: process.env.DATABASE_URL
 });
 function CreateBackup() {
     client.connect((err, client, done) => {

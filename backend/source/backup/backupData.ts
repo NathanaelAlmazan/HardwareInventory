@@ -7,11 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config(); 
 const Pool = pg.Pool;
 const client = new Pool({
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    database: process.env.DATABASE_NAME,
-    password: process.env.DATABASE_PASSWORD,
-    port: parseInt(process.env.DATABASE_PORT as string)
+    connectionString: process.env.DATABASE_URL
 });
 
 export default function CreateBackup() {
