@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import path from "path";
 import fs from "fs";
 import * as hbs from "handlebars";
-import puppeteer from "puppeteer-core";
+import puppeteer from "puppeteer";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -934,8 +934,6 @@ export async function generateInvoicePDF(orderId: number) {
         if (orderInvoice.sold != null) return { status: false, message: "Order is already paid." };
 
         const browser = await puppeteer.launch({
-            executablePath: '/usr/bin/chromium',
-            headless: true, 
             args: ["--no-sandbox", "--disable-setuid-sandbox"]
         });
 
@@ -986,8 +984,6 @@ export async function generateReceiptPDF(orderId: number) {
         if (orderReceipt.transactions.length == 0) return { status: false, message: "This order has no payments yet." };
 
         const browser = await puppeteer.launch({
-            executablePath: '/usr/bin/chromium',
-            headless: true, 
             args: ["--no-sandbox", "--disable-setuid-sandbox"]
         });
         
