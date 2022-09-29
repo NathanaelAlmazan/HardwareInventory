@@ -897,6 +897,7 @@ function generateInvoicePDF(orderId) {
             return { status: true, message: fileName };
         }
         catch (err) {
+            console.log(err);
             return { status: false, message: err.message };
         }
     });
@@ -946,6 +947,7 @@ function generateReceiptPDF(orderId) {
             return { status: true, message: fileName };
         }
         catch (err) {
+            console.log(err);
             return { status: false, message: err.message };
         }
     });

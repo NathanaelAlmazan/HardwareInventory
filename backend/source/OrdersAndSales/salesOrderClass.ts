@@ -963,6 +963,7 @@ export async function generateInvoicePDF(orderId: number) {
 
         return { status: true, message: fileName };
     } catch (err) {
+        console.log(err)
         return { status: false, message: (err as Error).message };
     }
 }
@@ -1013,6 +1014,7 @@ export async function generateReceiptPDF(orderId: number) {
 
         return { status: true, message: fileName };
     } catch (err) {
+        console.log(err)
         return { status: false, message: (err as Error).message };
     }
 }
