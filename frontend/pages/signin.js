@@ -42,7 +42,7 @@ export default function Login({ currUser }) {
         <ContentStyle>
           <Stack sx={{ mb: 5 }}>
             <Typography variant="h4" gutterBottom>
-              Login to Baylor Supreme Trading Inc.
+              Login to Kingvish Hydraulic Trading
             </Typography>
             <Typography sx={{ color: 'text.secondary' }}>Enter your credentials below.</Typography>
           </Stack>
