@@ -114,6 +114,7 @@ class SalesOrder {
                         amount_due: amountDue,
                         order_date: orderDate,
                         due_date: indexedDate,
+                        delivered: newOrder.delivered ? new Date().toISOString() : null,
                         products: {
                             create: this.order_products,
                         },

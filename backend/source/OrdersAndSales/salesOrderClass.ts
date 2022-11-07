@@ -33,6 +33,7 @@ export interface NewOrderInterface {
     order_date: Date | null;
     terms: number;
     is_active: boolean | null;
+    delivered: boolean;
 }
 
 export interface UpdateOrderInterface {
@@ -129,6 +130,7 @@ export class SalesOrder {
                     amount_due: amountDue,
                     order_date: orderDate,
                     due_date: indexedDate,
+                    delivered: newOrder.delivered ? new Date().toISOString() : null,
                     products: {
                         create: this.order_products,
                     },
