@@ -1,5 +1,5 @@
 // material
-import { Grid, TextField, InputAdornment, IconButton, MenuItem, FormControlLabel, FormGroup } from '@mui/material';
+import { Grid, TextField, InputAdornment, IconButton, MenuItem, FormControlLabel, FormGroup, Switch } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import PersonIcon from '@mui/icons-material/Person';
 // ----------------------------------------------------------------------
@@ -202,17 +202,6 @@ export default function RegisterOrder(props) {
                                         label="Delivered" 
                                     />
                                 </FormGroup>
-                                <TextField
-                                    fullWidth
-                                    label="Delivered"
-                                    name="discount"
-                                    inputProps={{ step: ".50", min: 0 }}
-                                    type="number"
-                                    value={orderForm.discount}
-                                    onChange={handleValueChange}
-                                    error={Boolean(orderErrors.discount !== null)}
-                                    helperText={orderErrors.discount !== null && orderErrors.discount}
-                                    />
                             </Grid>
                         </Grid> 
                     </Grid>
