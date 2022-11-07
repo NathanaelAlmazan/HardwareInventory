@@ -1,5 +1,5 @@
 // material
-import { Grid, TextField, InputAdornment, IconButton, MenuItem } from '@mui/material';
+import { Grid, TextField, InputAdornment, IconButton, MenuItem, FormControlLabel, FormGroup } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import PersonIcon from '@mui/icons-material/Person';
 // ----------------------------------------------------------------------
@@ -179,6 +179,32 @@ export default function RegisterOrder(props) {
                                 <TextField
                                     fullWidth
                                     label="Discount in Peso"
+                                    name="discount"
+                                    inputProps={{ step: ".50", min: 0 }}
+                                    type="number"
+                                    value={orderForm.discount}
+                                    onChange={handleValueChange}
+                                    error={Boolean(orderErrors.discount !== null)}
+                                    helperText={orderErrors.discount !== null && orderErrors.discount}
+                                    />
+                            </Grid>
+                            <Grid item xs={12} sm={6} md={6}>
+                                <FormGroup>
+                                    <FormControlLabel 
+                                        control={
+                                            <Switch 
+                                                defaultChecked 
+                                                checked={orderForm.delivered}
+                                                onChange={(event) => setOrderForm({ ...orderForm, delivered: event.target.checked })}
+                                                inputProps={{ 'aria-label': 'controlled' }}
+                                            />
+                                        } 
+                                        label="Delivered" 
+                                    />
+                                </FormGroup>
+                                <TextField
+                                    fullWidth
+                                    label="Delivered"
                                     name="discount"
                                     inputProps={{ step: ".50", min: 0 }}
                                     type="number"

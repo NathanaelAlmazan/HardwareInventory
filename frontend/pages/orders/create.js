@@ -47,7 +47,8 @@ export default function CreateOrder(props) {
       vat: "",
       discount: "",
       total_price: "",
-      total_amount: ""
+      total_amount: "",
+      delivered: false
     });
     const [orderErrors, setOrderErrors] = useState({
       vat: null,
@@ -57,7 +58,7 @@ export default function CreateOrder(props) {
 
     const submitNewOrder = async () => {
 
-      const { payment_type, vat, discount, order_date, terms } = orderForm;
+      const { payment_type, vat, discount, order_date, terms, delivered } = orderForm;
 
       if (orderProducts.length === 0) {
         setErrorDialog("No Product selected: Products are required.");
@@ -108,7 +109,8 @@ export default function CreateOrder(props) {
             vat: vat !== "" ? vat : null,
             discount: discount !== "" ? discount : null,
             order_date: order_date,
-            terms: terms !== "" ? terms : null
+            terms: terms !== "" ? terms : null,
+            delivered: delivered
           }
         });
   
@@ -253,7 +255,7 @@ export default function CreateOrder(props) {
                         setOrderForm={value => setOrderForm(value)}
                         setOrderErrors={value => setOrderErrors(value)}
                         editable={editable}
-                        />
+                    />
                 </Card>
 
                 <Card sx={{ padding: 5, width: '100%' }}>
