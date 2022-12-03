@@ -246,13 +246,12 @@ export class SalesOrder {
         }
     }
 
-
     async updateOrder(orderUpdate: UpdateOrderInterface, orderProducts: OrderProducts[]) {
 
         if (orderProducts.length === 0) return { status: false, message: "This order have no product." };
 
         try { 
-            const currOrder = await dataPool.order.findUnique({ 
+            const currOrder = await dataPool.order.findUnique({
                 where: {
                     id: orderUpdate.orderId
                 },
@@ -266,8 +265,7 @@ export class SalesOrder {
 
             for (let x = 0; x < currOrder.products.length; x++) {
                 const currProduct = currOrder.products[x];
-                
-                const deletedItem = await dataPool.orderWithProduct.delete({
+                const deletedOrder = await dataPool.orderWithProduct.delete({
                     where: {
                         product_id_order_id: { 
                             product_id: currProduct.product_id,
@@ -277,35 +275,22 @@ export class SalesOrder {
                     select: {
                         product: {
                             select: {
-                                returned: true
+                                stocks: true
                             }
                         }
                     }
                 });
 
-                const item = orderProducts.find(p => p.id === currProduct.product_id);
+                const newStocks = deletedOrder.product.stocks + currProduct.quantity;
 
-                if (item) {
-                    if (item.quantity < currProduct.quantity) {
-                        await dataPool.product.update({
-                            where: {
-                                id: currProduct.product_id
-                            },
-                            data: {
-                                returned: deletedItem.product.returned + (currProduct.quantity - item.quantity)
-                            }
-                        })
+                await dataPool.product.update({
+                    where: { 
+                        id: currProduct.product_id
+                    },
+                    data: {
+                        stocks: newStocks
                     }
-                } else {
-                    await dataPool.product.update({
-                        where: {
-                            id: currProduct.product_id
-                        },
-                        data: {
-                            returned: deletedItem.product.returned + currProduct.quantity
-                        }
-                    })
-                }
+                })
             }
 
         } catch (err) {
