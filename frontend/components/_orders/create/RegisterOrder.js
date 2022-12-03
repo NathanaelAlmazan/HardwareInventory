@@ -105,6 +105,7 @@ export default function RegisterOrder(props) {
                                 <TextField
                                     select
                                     fullWidth
+                                    disabled={editable}
                                     label="Payment Type"
                                     name="payment_type"
                                     value={orderForm.payment_type}
@@ -123,7 +124,7 @@ export default function RegisterOrder(props) {
                                     label="Terms"
                                     name="terms"
                                     type="number"
-                                    disabled={orderForm.payment_type !== "Credit" ? true : false}
+                                    disabled={orderForm.payment_type !== "Credit" || editable ? true : false}
                                     inputProps={{ min: 0 }}
                                     value={orderForm.terms}
                                     onChange={handleTermsChange}
@@ -142,6 +143,7 @@ export default function RegisterOrder(props) {
                             <Grid item xs={12} sm={6} md={6}>
                                 <TextField
                                     fullWidth
+                                    disabled={editable}
                                     type="Date"
                                     name="order_date"
                                     label="Order Date"
@@ -152,6 +154,7 @@ export default function RegisterOrder(props) {
                             <Grid item xs={12} sm={6} md={6}>
                                 <TextField
                                     fullWidth
+                                    disabled={true}
                                     type="Date"
                                     name="due_date"
                                     label="Due Date"
@@ -165,6 +168,7 @@ export default function RegisterOrder(props) {
                             <Grid item xs={12} sm={6} md={6}>
                                 <TextField
                                     fullWidth
+                                    disabled={editable}
                                     label="VAT ( % )"
                                     name="vat"
                                     type="number"
@@ -193,6 +197,7 @@ export default function RegisterOrder(props) {
                                     <FormControlLabel 
                                         control={
                                             <Switch 
+                                                disabled={editable}
                                                 defaultChecked 
                                                 checked={orderForm.delivered}
                                                 onChange={(event) => setOrderForm({ ...orderForm, delivered: event.target.checked })}

@@ -69,13 +69,7 @@ export default function UpdateOrder(props) {
         setPayments(state => currOrder.transactions);
     }, [currOrder]);
 
-    const handleEdit = () => {
-        if (!currOrder.delivered) {
-            history.push(`/orders/edit/${currOrder.id}`)
-        } else {
-            setErrorDialog("Alert: You cannot edit this order because it is already delivered.");
-        }
-    }
+    const handleEdit = () => history.push(`/orders/edit/${currOrder.id}`);
 
     const cancelOrder = async () => {
         const baseURL = API_CLIENT_SIDE();
@@ -260,11 +254,11 @@ export default function UpdateOrder(props) {
                     {AllowedPosition.includes(currUser.position) && (
                         <Button
                             variant="contained"
-                            color="secondary"
+                            color="info"
                             onClick={() =>  handleEdit()}
                             startIcon={<EditIcon />}
                         >
-                            Edit
+                            Return Items
                         </Button>
                     )}
                     {ExecutivePosition.includes(currUser.position) && currOrder.is_active === true && (
@@ -293,7 +287,7 @@ export default function UpdateOrder(props) {
                     {AllowedPosition.includes(currUser.position) && (
                         <IconButton
                             variant="contained"
-                            color="secondary"
+                            color="info"
                             onClick={() =>  handleEdit()}
                         >
                            <EditIcon fontSize="medium" />

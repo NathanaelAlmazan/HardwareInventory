@@ -266,7 +266,8 @@ export class SalesOrder {
 
             for (let x = 0; x < currOrder.products.length; x++) {
                 const currProduct = currOrder.products[x];
-                const deletedOrder = await dataPool.orderWithProduct.delete({
+                
+                const deletedItem = await dataPool.orderWithProduct.delete({
                     where: {
                         product_id_order_id: { 
                             product_id: currProduct.product_id,
@@ -276,22 +277,35 @@ export class SalesOrder {
                     select: {
                         product: {
                             select: {
-                                stocks: true
+                                returned: true
                             }
                         }
                     }
                 });
 
-                const newStocks = deletedOrder.product.stocks + currProduct.quantity;
+                const item = orderProducts.find(p => p.id === currProduct.product_id);
 
-                await dataPool.product.update({
-                    where: { 
-                        id: currProduct.product_id
-                    },
-                    data: {
-                        stocks: newStocks
+                if (item) {
+                    if (item.quantity < currProduct.quantity) {
+                        await dataPool.product.update({
+                            where: {
+                                id: currProduct.product_id
+                            },
+                            data: {
+                                returned: deletedItem.product.returned + (currProduct.quantity - item.quantity)
+                            }
+                        })
                     }
-                })
+                } else {
+                    await dataPool.product.update({
+                        where: {
+                            id: currProduct.product_id
+                        },
+                        data: {
+                            returned: deletedItem.product.returned + currProduct.quantity
+                        }
+                    })
+                }
             }
 
         } catch (err) {
