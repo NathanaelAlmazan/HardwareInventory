@@ -16,7 +16,7 @@ function TransactionRow({ data, token, redirect }) {
         if (!purchase_order) {
             redirect(event, "/orders/profile/" + order.id);
         } else {
-            redirect(event, "/purchase/profile/" + purchase_order.id);
+            redirect(event, "/purchase/profile/" + purchase_order.invoice_id);
         }
     }
 

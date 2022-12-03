@@ -82,7 +82,7 @@ function ProductInfo(props) {
                         fullWidth
                         disabled={profile}
                         name="barCode"
-                        label="Bar Code"
+                        label="Reference No."
                         variant="standard"
                         value={barCode}
                         onChange={event =>  textChange(event)}

@@ -25,7 +25,7 @@ function ProductMeasure(props) {
         <Card sx={{ p: 3 }}>
             <HeadStyle>
                 <Typography component="div" variant="subtitle1">
-                    Measurments
+                    Measurements
                 </Typography>
                 {!profile && (
                     <Tooltip title="Filter list">

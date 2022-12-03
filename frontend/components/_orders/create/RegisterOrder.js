@@ -199,7 +199,7 @@ export default function RegisterOrder(props) {
                                                 inputProps={{ 'aria-label': 'controlled' }}
                                             />
                                         } 
-                                        label="Delivered" 
+                                        label="Deliver" 
                                     />
                                 </FormGroup>
                             </Grid>
