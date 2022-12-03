@@ -258,7 +258,7 @@ export default function UpdateOrder(props) {
                             onClick={() =>  handleEdit()}
                             startIcon={<EditIcon />}
                         >
-                            Return Items
+                            Edit Order
                         </Button>
                     )}
                     {ExecutivePosition.includes(currUser.position) && currOrder.is_active === true && (
