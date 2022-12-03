@@ -10,7 +10,7 @@ export default function Home({ currUser }) {
 export async function getServerSideProps(ctx) {
   const currSession = await getSession(ctx);
   const ExecutivePosition = ["President", "Vice President", "Manager", "Accountant", "Cashier"];
-  const Personnel = ["Warehouse Staff", "Delivery Personnel"];
+  const Personnel = ["Warehouse Staff", "Delivery Personnel", "Sales Agent"];
 
   if (!currSession) {
     return {
@@ -34,14 +34,6 @@ export async function getServerSideProps(ctx) {
       redirect: {
         permanent: false,
         destination: '/products'
-      }
-    }
-  }
-  else if (currSession.position === "Sales Agent") {
-    return {
-      redirect: {
-        permanent: false,
-        destination: `/employees/profile/${currSession.userId}`
       }
     }
   }

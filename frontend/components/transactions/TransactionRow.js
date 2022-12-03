@@ -8,6 +8,10 @@ import dynamic from "next/dynamic";
 
 const Label = dynamic(() => import("../Label"));
 
+function numberWithCommas(x) {
+    return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function TransactionRow({ data, token, redirect }) {
     const { id, account, amount_paid, payment_date, order, purchase_order } = data;
     const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
@@ -34,9 +38,9 @@ function TransactionRow({ data, token, redirect }) {
             <TableCell align="right">{account.employee.full_name}</TableCell>
             <TableCell align="right">{new Date(payment_date).toLocaleDateString(undefined, options)}</TableCell>
             {!purchase_order ? (
-                <TableCell align="right" sx={{ color: "green" }}>{"+ ₱" + amount_paid.toFixed(2)}</TableCell>
+                <TableCell align="right" sx={{ color: "green" }}>{"+ ₱" + numberWithCommas(amount_paid.toFixed(2))}</TableCell>
             ) : (
-                <TableCell align="right" sx={{ color: "red" }}>{"- ₱" + amount_paid.toFixed(2)}</TableCell>
+                <TableCell align="right" sx={{ color: "red" }}>{"- ₱" + numberWithCommas(amount_paid.toFixed(2))}</TableCell>
             )}
             
             <TableCell align="right">

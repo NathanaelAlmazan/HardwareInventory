@@ -11,6 +11,11 @@ const OrderMoreMenu = dynamic(() => import("./OrderMoreMenu"));
 const HistoryTable = dynamic(() => import("./HistoryTable"));
 const Label = dynamic(() => import("../../Label"));
 
+
+function numberWithCommas(x) {
+    return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function OrderListRow({ data, token, position }) {
     const [open, setOpen] = useState(false);
     const { id, customer, employee, order_date, due_date, order_balance, days_left, delivered, amount_due, transactions } = data;
@@ -49,7 +54,7 @@ function OrderListRow({ data, token, position }) {
             </TableCell>
             <TableCell align="right">{new Date(order_date).toLocaleDateString(undefined, options)}</TableCell>
             <TableCell align="right">{new Date(due_date).toLocaleDateString(undefined, options)}</TableCell>
-            <TableCell align="right">{order_balance > 0 ? "₱" + order_balance.toFixed(2) : "₱ 0.00"}</TableCell>
+            <TableCell align="right">{order_balance > 0 ? "₱" + numberWithCommas(order_balance.toFixed(2)) : "₱ 0.00"}</TableCell>
             <TableCell align="right">
             <Label
                 variant="ghost"

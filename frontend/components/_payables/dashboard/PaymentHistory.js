@@ -8,6 +8,10 @@ import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import Table from '@mui/material/Table';
 
+function numberWithCommas(x) {
+  return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function HistoryTable(props) {
     const { transactions, open, amountDue } = props;
     let totalPaid = 0;
@@ -45,7 +49,7 @@ function HistoryTable(props) {
                         {paymentDate.toDateString()}
                     </TableCell>
                     <TableCell align="right">{id}</TableCell>
-                    <TableCell align="right">{"₱ " + amount_paid.toFixed(2)}</TableCell>
+                    <TableCell align="right">{"₱ " + numberWithCommas(amount_paid.toFixed(2))}</TableCell>
                     </TableRow>
                 )}
                 )}
@@ -56,12 +60,12 @@ function HistoryTable(props) {
                         <TableCell rowSpan={2} />
                         <TableCell colSpan={1} align="right"><strong>Amount Due</strong></TableCell>
                         <TableCell align="right">
-                            {"₱ " + amountDue.toFixed(2)}
+                            {"₱ " + numberWithCommas(amountDue.toFixed(2))}
                         </TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell colSpan={1} align="right"><strong>Total Amount Paid</strong></TableCell>
-                        <TableCell align="right">{"₱ " + totalPaid.toFixed(2)}</TableCell>
+                        <TableCell align="right">{"₱ " + numberWithCommas(totalPaid.toFixed(2))}</TableCell>
                     </TableRow>
                 </>
                 ) : (

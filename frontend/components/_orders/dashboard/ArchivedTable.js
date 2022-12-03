@@ -68,6 +68,9 @@ function descendingComparator(a, b, orderBy) {
     return stabilizedThis.map((el) => el[0]);
 }
 
+function numberWithCommas(x) {
+  return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 export default function ArchivedListTable(props) {
     const { handleClick, selected, token, orders, hideCheckbox, purpose, allFunction, refreshData, clearSelected } = props;
@@ -177,7 +180,7 @@ export default function ArchivedListTable(props) {
                           <TableCell align="right">{customer.full_name}</TableCell>
                           <TableCell align="right">{employee.full_name}</TableCell>
                           <TableCell align="right">{new Date(order_date).toLocaleDateString(undefined, options)}</TableCell>
-                          <TableCell align="right">{"₱ " + amount_due.toFixed(2)}</TableCell>
+                          <TableCell align="right">{"₱ " + numberWithCommas(amount_due.toFixed(2))}</TableCell>
                           {purpose === "restore" ? (
                             <TableCell align="right">
                               <Label

@@ -1,15 +1,15 @@
-import TextField from '@mui/material/TextField';
 import Table from '@mui/material/Table';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
-import IconButton from '@mui/material/IconButton';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import dynamic from "next/dynamic";
 
 const Scrollbar = dynamic(() => import("../../Scrollbar"));
 
+function numberWithCommas(x) {
+    return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 export default function PointOfSale(props) {
     const { orderProducts, orderInfo } = props;
@@ -43,7 +43,7 @@ export default function PointOfSale(props) {
                         <TableCell align="right">
                             {quantity}
                         </TableCell>
-                        <TableCell align="right">{"₱ " + total_price.toFixed(2)}</TableCell>
+                        <TableCell align="right">{"₱ " + numberWithCommas(total_price.toFixed(2))}</TableCell>
                     </TableRow>
                     )}
                     )}
@@ -57,12 +57,12 @@ export default function PointOfSale(props) {
                         <TableRow>
                         <TableCell rowSpan={3} />
                         <TableCell colSpan={2}>Total</TableCell>
-                        <TableCell align="right">{"₱ " + totalPrice.toFixed(2)}</TableCell>
+                        <TableCell align="right">{"₱ " + numberWithCommas(totalPrice.toFixed(2))}</TableCell>
                         </TableRow>
                         <TableRow>
                         <TableCell colSpan={2}>Amount Due</TableCell>
                         <TableCell align="right">
-                            {"₱ " + amount_due.toFixed(2)}
+                            {"₱ " + numberWithCommas(amount_due.toFixed(2))}
                         </TableCell>
                         </TableRow>
                     </>

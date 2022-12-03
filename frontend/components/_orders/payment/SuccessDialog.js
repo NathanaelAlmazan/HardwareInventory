@@ -11,6 +11,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+function numberWithCommas(x) {
+  return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export default function AlertDialogSlide(props) {
   const { open, setOpen, leavePage, generateReceipt } = props;
 
@@ -31,7 +35,7 @@ export default function AlertDialogSlide(props) {
         <DialogContent>
             {open > 0 ? (
                 <DialogContentText id="alert-dialog-slide-description">
-                    This order has remaining balance of ₱ {open.toFixed(2)}.
+                    This order has remaining balance of ₱ {numberWithCommas(open.toFixed(2))}.
                 </DialogContentText>
             ) : (
                 <DialogContentText id="alert-dialog-slide-description">

@@ -125,7 +125,13 @@ export default function EditProduct(props) {
     }
 
     const handleImageChange = (event) => {
-        setProductImage(event.target.files[0]);
+        const format = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
+        const image = event.target.files[0];
+        if (image && format.exec(image.name)) {
+            setProductImage(image);
+        } else {
+            setErrorDialog("File extension not supported!");
+        }
     }
 
     const handleRemoveDesc = (event, index) => {

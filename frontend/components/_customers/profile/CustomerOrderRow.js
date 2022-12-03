@@ -7,6 +7,10 @@ import dynamic from "next/dynamic";
 const OrderMoreMenu = dynamic(() => import("../../_orders/dashboard/OrderMoreMenu"));
 const Label = dynamic(() => import("../../Label"));
 
+function numberWithCommas(x) {
+    return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function CustomerOrderRow({ data, token, redirect }) {
     const { id, employee, order_date, due_date, order_balance, days_left, delivered, amount_due, transactions } = data;
     const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
@@ -27,7 +31,7 @@ function CustomerOrderRow({ data, token, redirect }) {
             <TableCell align="right">{employee.full_name}</TableCell>
             <TableCell align="right">{new Date(order_date).toLocaleDateString(undefined, options)}</TableCell>
             <TableCell align="right">{new Date(due_date).toLocaleDateString(undefined, options)}</TableCell>
-            <TableCell align="right">{order_balance > 0 ? "₱ " + order_balance.toFixed(2) : "₱ 0.00"}</TableCell>
+            <TableCell align="right">{order_balance > 0 ? "₱ " + numberWithCommas(order_balance.toFixed(2)) : "₱ 0.00"}</TableCell>
             <TableCell align="right">
             <Label
                 variant="ghost"

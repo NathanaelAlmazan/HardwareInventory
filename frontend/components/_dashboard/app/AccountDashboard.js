@@ -10,6 +10,10 @@ import BaseOptionChart from './BaseOptionChart';
 
 // ----------------------------------------------------------------------
 
+function numberWithCommas(x) {
+  return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export default function AppWebsiteVisits({ data, date, setDate }) {
   const [categories, setCategory] = useState([]);
   const [salesValues, setSalesValues] = useState([]);
@@ -90,7 +94,7 @@ export default function AppWebsiteVisits({ data, date, setDate }) {
       y: {
         formatter: (y) => {
           if (typeof y !== 'undefined') {
-            return `₱ ${y.toFixed(2)}`;
+            return `₱ ${numberWithCommas(y.toFixed(2))}`;
           }
           return y;
         }

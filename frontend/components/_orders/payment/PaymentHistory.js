@@ -11,6 +11,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import UpdatePayment from './UpdatePayment';
 
+function numberWithCommas(x) {
+  return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export default function PaymentHistory(props) {
   const [update, setUpdate] = useState(false);
   const [selectedRow, setSelectedRow] = useState({ 
@@ -58,7 +62,7 @@ export default function PaymentHistory(props) {
               </TableCell>
               <TableCell align="right">{id}</TableCell>
               <TableCell align="right">{employee.full_name}</TableCell>
-              <TableCell align="right">{"₱ " + amount_paid.toFixed(2)}</TableCell>
+              <TableCell align="right">{"₱ " + numberWithCommas(amount_paid.toFixed(2))}</TableCell>
               {profile === true && (
                 <TableCell align="right">
                   <IconButton onClick={event => handleUpdatePayment(id, amount_paid)} disabled={!position}>
@@ -76,12 +80,12 @@ export default function PaymentHistory(props) {
                     <TableCell rowSpan={2} />
                     <TableCell colSpan={2} align="right"><strong>Amount Due</strong></TableCell>
                     <TableCell align="right">
-                        {"₱ " + amountDue.toFixed(2)}
+                        {"₱ " + numberWithCommas(amountDue.toFixed(2))}
                     </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell colSpan={2} align="right"><strong>Total Amount Paid</strong></TableCell>
-                    <TableCell align="right">{"₱ " + totalPaid.toFixed(2)}</TableCell>
+                    <TableCell align="right">{"₱ " + numberWithCommas(totalPaid.toFixed(2))}</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell rowSpan={2} />
@@ -91,7 +95,7 @@ export default function PaymentHistory(props) {
                         <strong>Change</strong>
                       </TableCell>
                       <TableCell align="right">
-                        {"₱ " + Math.abs(balance).toFixed(2)}
+                        {"₱ " + numberWithCommas(Math.abs(balance).toFixed(2))}
                       </TableCell>
                       </>
                     ) : (
@@ -100,7 +104,7 @@ export default function PaymentHistory(props) {
                         <strong>Balance</strong>
                       </TableCell>
                       <TableCell align="right">
-                        {"₱ " + balance.toFixed(2)}
+                        {"₱ " + numberWithCommas(balance.toFixed(2))}
                       </TableCell>
                       </>
                     )}
@@ -120,7 +124,7 @@ export default function PaymentHistory(props) {
       <UpdatePayment 
         transactionId={selectedRow.id}
         accessToken={token}
-        currAmount={"₱ " + selectedRow.curr_amount.toFixed(2)}
+        currAmount={"₱ " + numberWithCommas(selectedRow.curr_amount.toFixed(2))}
         open={update}
         setOpen={value => setUpdate(value)}
         reload={() => reload()}

@@ -10,6 +10,9 @@ import dynamic from "next/dynamic";
 
 const Scrollbar = dynamic(() => import("../../Scrollbar"));
 
+function numberWithCommas(x) {
+    return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 export default function ProductTable(props) {
     const { orderProducts, handleQuantityBlur, charges, discount, totalPrice, removeProduct, handlePriceBlur } = props;
@@ -60,7 +63,7 @@ export default function ProductTable(props) {
                                 variant="standard"
                             />
                         </TableCell>
-                        <TableCell align="right">{!orderSum ? 0.00 : `₱ ${orderSum.toFixed(2)}`}</TableCell>
+                        <TableCell align="right">{!orderSum ? 0.00 : `₱ ${numberWithCommas(orderSum.toFixed(2))}`}</TableCell>
                         <TableCell>
                             <IconButton onClick={event => removeProduct(event, id)}>
                                 <DeleteOutlineIcon />
@@ -79,12 +82,12 @@ export default function ProductTable(props) {
                         <TableRow>
                         <TableCell rowSpan={3} />
                         <TableCell colSpan={2}>Total</TableCell>
-                        <TableCell align="right">{totalPrice !== "" && `₱ ${totalPrice.toFixed(2)}`}</TableCell>
+                        <TableCell align="right">{totalPrice !== "" && `₱ ${numberWithCommas(totalPrice.toFixed(2))}`}</TableCell>
                         </TableRow>
                         <TableRow>
                         <TableCell colSpan={2}>Amount Due</TableCell>
                         <TableCell align="right">
-                            {totalPrice !== "" && `₱ ${(totalPrice + addCharge - discounted).toFixed(2)}`}
+                            {totalPrice !== "" && `₱ ${numberWithCommas((totalPrice + addCharge - discounted).toFixed(2))}`}
                         </TableCell>
                         </TableRow>
                     </>

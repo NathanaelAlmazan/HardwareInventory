@@ -53,7 +53,7 @@ export default function Login({ currUser }) {
             <Typography variant="body2" align="center" sx={{ mt: 3 }}>
               Don’t have an account?&nbsp;
               <Link variant="subtitle2" onClick={event => onRouterClick(event, "/signup")}>
-                Get started
+                Register
               </Link>
             </Typography>
         </ContentStyle>

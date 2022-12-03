@@ -23,6 +23,10 @@ ShopProductCard.propTypes = {
   product: PropTypes.object
 };
 
+function numberWithCommas(x) {
+  return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export default function ShopProductCard({ product, onChecked, checked }) {
   const { id, name, image_name, price, stocks } = product;
   const history = useRouter();
@@ -63,7 +67,7 @@ export default function ShopProductCard({ product, onChecked, checked }) {
           </Typography>
           <Typography variant="subtitle1">
             &nbsp;
-            {'₱' + price.toFixed(2)}
+            {'₱' + numberWithCommas(price.toFixed(2))}
           </Typography>
         </Stack>
       </Stack>

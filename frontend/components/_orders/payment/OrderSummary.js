@@ -23,6 +23,10 @@ const SecondaryStyle = styled(Card)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
+function numberWithCommas(x) {
+  return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export default function OrderSummary(props) {
     const { variant, value } = props;
 
@@ -37,7 +41,7 @@ export default function OrderSummary(props) {
 
   return (
     <PrimaryStyle>
-      <Typography variant="h3">{"₱ " + value.toFixed(2)}</Typography>
+      <Typography variant="h3">{"₱ " + numberWithCommas(value.toFixed(2))}</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         Order Balance
       </Typography>

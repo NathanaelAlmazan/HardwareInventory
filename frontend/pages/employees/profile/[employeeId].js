@@ -137,7 +137,13 @@ export default function EmployeeProfile(props) {
       } 
 
       if (employeeImage !== null) {
-        handleChangeImage();
+        const format = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
+        const image = employeeImage;
+        if (image && format.exec(image.name)) {
+            handleChangeImage();
+        } else {
+            alert("File extension not supported!");
+        }
       }
 
     }, [employeeImage, currUser, employeeData]);
