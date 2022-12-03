@@ -245,7 +245,7 @@ class SalesOrder {
                     return { status: false, message: "Order does not exist." };
                 for (let x = 0; x < currOrder.products.length; x++) {
                     const currProduct = currOrder.products[x];
-                    const deletedItem = yield dataPool.orderWithProduct.delete({
+                    const deletedOrder = yield dataPool.orderWithProduct.delete({
                         where: {
                             product_id_order_id: {
                                 product_id: currProduct.product_id,
@@ -255,34 +255,20 @@ class SalesOrder {
                         select: {
                             product: {
                                 select: {
-                                    returned: true
+                                    stocks: true
                                 }
                             }
                         }
                     });
-                    const item = orderProducts.find(p => p.id === currProduct.product_id);
-                    if (item) {
-                        if (item.quantity < currProduct.quantity) {
-                            yield dataPool.product.update({
-                                where: {
-                                    id: currProduct.product_id
-                                },
-                                data: {
-                                    returned: deletedItem.product.returned + (currProduct.quantity - item.quantity)
-                                }
-                            });
+                    const newStocks = deletedOrder.product.stocks + currProduct.quantity;
+                    yield dataPool.product.update({
+                        where: {
+                            id: currProduct.product_id
+                        },
+                        data: {
+                            stocks: newStocks
                         }
-                    }
-                    else {
-                        yield dataPool.product.update({
-                            where: {
-                                id: currProduct.product_id
-                            },
-                            data: {
-                                returned: deletedItem.product.returned + currProduct.quantity
-                            }
-                        });
-                    }
+                    });
                 }
             }
             catch (err) {
