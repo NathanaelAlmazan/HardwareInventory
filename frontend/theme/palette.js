@@ -90,7 +90,8 @@ const CHART_COLORS = {
   blue: ['#2D99FF', '#83CFFF', '#A5F3FF', '#CCFAFF'],
   green: ['#2CD9C5', '#60F1C8', '#A4F7CC', '#C0F2DC'],
   yellow: ['#FFE700', '#FFEF5A', '#FFF7AE', '#FFF3D6'],
-  red: ['#FF6C40', '#FF8F6D', '#FFBD98', '#FFF2D4']
+  red: ['#FF6C40', '#FF8F6D', '#FFBD98', '#FFF2D4'],
+  orange: ['#FAC898', '#FF8F6D', '#FFBD98', '#FFF2D4']
 };
 
 const palette = {

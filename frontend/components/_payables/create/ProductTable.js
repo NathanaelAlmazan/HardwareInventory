@@ -58,7 +58,7 @@ export default function ProductTable(props) {
                                 defaultValue={!quantity ? "" : quantity}
                                 onBlur={event => handleQuantityBlur(event, id)}
                                 sx={{ maxWidth: 100 }}
-                                inputProps={{min: 1, style: { textAlign: 'right' }}}
+                                inputProps={{min: 1, max: 100, style: { textAlign: 'right' }}}
                                 type="number"
                                 variant="standard"
                             />

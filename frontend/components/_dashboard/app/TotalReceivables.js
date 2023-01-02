@@ -41,7 +41,7 @@ export default function AppWeeklySales({ data }) {
       </IconWrapperStyle>
       <Typography variant="h3">{data}</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-        Unpaid Orders
+          Receivables
       </Typography>
     </RootStyle>
   );

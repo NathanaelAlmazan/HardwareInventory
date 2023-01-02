@@ -41,7 +41,7 @@ export default function AppItemOrders({ data }) {
       </IconWrapperStyle>
       <Typography variant="h3">{data}</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-        Arriving Purchases
+        Arriving Items
       </Typography>
     </RootStyle>
   );

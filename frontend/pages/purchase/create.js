@@ -84,6 +84,10 @@ export default function PurchaseOrder(props) {
             setErrorDialog(`${product.name}: No specified quantity.`);
             cleared = false;
           }
+          else if (product.quantity > 100) {
+            setErrorDialog(`${product.name}: Too much quantity.`);
+            cleared = false;
+          }
           else if (!product.init_price || product.init_price === "") {
             setErrorDialog(`${product.name}: No specified suppliers price.`);
             cleared = false;
