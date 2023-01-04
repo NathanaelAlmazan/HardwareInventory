@@ -91,7 +91,7 @@ function ProductInfo(props) {
                     <TextField 
                         fullWidth
                         name="barCode"
-                        label="Bar Code"
+                        label="Reference No."
                         variant="standard"
                         value={!barCode ? "" : barCode}
                     />
